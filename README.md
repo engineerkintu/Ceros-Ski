@@ -96,9 +96,9 @@ We are looking forward to see what you come up with!
 
 ## Fixing of the bug as requested
 I identified the following:
-*The skier was moving left to right
-*Crash was also an included direction, which was to the left of left.
-*I observed that making the skier to move to the left direction after a crash, puts the skier in a direction that is not available.
+* The skier was moving left to right
+* Crash was also an included direction, which was to the left of left.
+* I observed that making the skier to move to the left direction after a crash, puts the skier in a direction that is not available.
 ### Solution to the bug
 The obvious solution will be to monitor the skier, if he has crashed and he is not allowed to turn left.
 The solution that I implemented was to tracking of the crashed state and direction are completely different.
