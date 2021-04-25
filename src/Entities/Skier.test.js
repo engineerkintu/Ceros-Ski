@@ -44,6 +44,14 @@ describe('checkIfSkierHitObstacle', () => {
             getBounds: jest.fn().mockReturnValue(new Rect(-5,-5,5,5))
         }
     }
+
+    //testing for skier after crashing on a rock
+    it('crash after collision with a rock', () => {
+        const ski = new Skier(0,0);
+        obstacleManager.getObstacles.mockReturnValue([getColObject('rock1')]);
+        ski.checkIfSkierHitObstacle(obstacleManager,assetManager);
+        expect(ski.state).toBe(Constants.SKIE_STATE.CRASH);
+    });
     
 
 })
