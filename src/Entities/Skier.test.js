@@ -52,6 +52,14 @@ describe('checkIfSkierHitObstacle', () => {
         ski.checkIfSkierHitObstacle(obstacleManager,assetManager);
         expect(ski.state).toBe(Constants.SKIE_STATE.CRASH);
     });
+
+    //testing for skier after crashing into the tree
+    it('crash after collision into the tree', () => {
+        const ski = new Skier(0,0);
+        obstacleManager.getObstacles.mockReturnValue([getColObject('tree')]);
+        ski.checkIfSkierHitObstacle(obstacleManager,assetManager);
+        expect(ski.state).toBe(Constants.SKIER_CRASH.CRASH);
+    });
     
 
 })
