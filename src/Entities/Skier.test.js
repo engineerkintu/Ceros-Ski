@@ -34,4 +34,16 @@ describe('checkIfSkierHitObstacle', () => {
         };
     });
 
+    //running test to get a colliding object
+    function getColObject(colObjAssetName){
+        return {
+            getPosition: jest.fn().mockReturnValue({x:0,y:0}),
+            width: 10,
+            height: 10,
+            getAssetName: jest.fn().mockReturnValue(colObjAssetName),
+            getBounds: jest.fn().mockReturnValue(new Rect(-5,-5,5,5))
+        }
+    }
+    
+
 })
