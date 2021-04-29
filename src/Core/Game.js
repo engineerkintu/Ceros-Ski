@@ -62,6 +62,9 @@ export class Game {
     }
 
     handleKeyDown(event) {
+        if(this.skier.state === Constants.SKIE_STATE.JUMP){
+            return;
+        }
         switch(event.which) {
             case Constants.KEYS.LEFT:
                 this.skier.turnLeft();

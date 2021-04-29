@@ -14,13 +14,15 @@ export class Skier extends Entity {
         super(x, y);
     }
     setState(state){
-        // if (this.state === Constants.SKIE_STATE){
-        //     return;
-        // }
+       
         this.state = state;
         this.animationDuration = 0;
         this.updateAsset();
 
+    }
+
+    getJumpStep(){
+        return Math.floor(this.animationDuration / Constants.SKIER_JUMP_TIME);
     }
 
     setDirection(direction) {
@@ -51,6 +53,12 @@ export class Skier extends Entity {
                 break;
             case Constants.SKIE_STATE.CRASH:
                 this.assetName = Constants.SKIER_CRASH;
+                break;
+            case Constants.SKIE_STATE.JUMP:
+                this.assetName = Constants.SKIER_JUMP_ASSETS[this.getJumpStep()];
+                if(this.getJumpStep() >= Constants.SKIER_JUMP_ASSETS.length){
+                    this.setState(Constants.SKIE_STATE.SKIING);
+                }
                 break;
 
         }
