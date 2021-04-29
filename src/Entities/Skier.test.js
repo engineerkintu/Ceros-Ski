@@ -60,6 +60,40 @@ describe('checkIfSkierHitObstacle', () => {
         ski.checkIfSkierHitObstacle(obstacleManager,assetManager);
         expect(ski.state).toBe(Constants.SKIER_CRASH.CRASH);
     });
-    
 
-})
+    //testing for skier crashing into tree while jumping
+    it('test skier crash on a collision with a tree while jumping', () => {
+        const skier = new Skier(0,0);
+        skier.setState(Constants.SKIE_STATE.JUMP);
+        obstacleManager.getObstacles.mockReturnValue([getColObject('tree')]);
+        skier.checkIfSkierHitObstacle(obstacleManager, assetManager);
+        expect(skier.state).toBe(Constants.SKIE_STATE.CRASH);
+    }); 
+    
+    //testing for skier jump on  a crash with jump ramp while jumping
+    it('skier starts a jump on a collision with a jump ramp', () => {
+        const skier = new Skier(0,0);
+        obstacleManager.getObstacles.mockReturnValue([getColObject('jumpRamp')]);
+        skier.checkIfSkierHitObstacle(obstacleManager, assetManager);
+        expect(skier.state).toBe(Constants.SKIE_STATE.JUMP);
+    });
+
+    it('skier does not start jump on a collision with a jump ramp while jumping', () => {
+        const skier = new Skier(0,0);
+        skier.setState(Constants.SKIE_STATE.JUMP);
+        jest.spyOn(skier, 'setMode');
+        obstacleManager.getObstacles.mockReturnValue([getColObject('jumpRamp')]);
+        skier.checkIfSkierHitObstacle(obstacleManager, assetManager);
+        expect(skier.setState).not.toBe(Constants.SKIE_STATE.JUMP);
+    });
+
+    //skier does not crash into rock while jumping
+    it('skier does not crash on a collision with a rock while jumping', () => {
+        const skier = new Skier(0,0);
+        skier.setState(Constants.SKIE_STATE.JUMP);
+        obstacleManager.getObstacles.mockReturnValue([getColObject('rock1')]);
+        skier.checkIfSkierHitObstacle(obstacleManager, assetManager);
+        expect(skier.state).not.toBe(Constants.SKIE_STATE.CRASH);
+    });
+
+});
