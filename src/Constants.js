@@ -17,6 +17,19 @@ export const SKIER_JUMP_2 = 'skierJump2';
 export const SKIER_JUMP_3 = 'skierJump3';
 export const SKIER_JUMP_4 = 'skierJump4';
 export const SKIER_JUMP_5 = 'skierJump5';
+export const RHINO_DEFAULT = 'rhinoDefault';
+export const RHINO_RUN_LEFT = 'rhinoRunLeft';
+export const RHINO_RUN_LEFT_2 = 'rhinoRunLeft2';
+export const RHINO_LIFT = 'rhinoLift';
+export const RHINO_LIFT_MOUTH_OPEN = 'rhinoLiftMouthOpen';
+export const RHINO_LIFT_EAT_1 = 'rhinoLiftEat1';
+export const RHINO_LIFT_EAT_2 = 'rhinoLiftEat2';
+export const RHINO_LIFT_EAT_3 = 'rhinoLiftEat3';
+export const RHINO_LIFT_EAT_4 = 'rhinoLiftEat4';
+export const RHINO_STARTING_SPEED = 1;
+export const RHINO_SPEED_INCREASE_RATE = 1.0005;
+export const RHINO_MAX_SPEED = 5.5;
+
 
 
 export const SKIER_STARTING_SPEED = 10;
@@ -39,6 +52,15 @@ export const ASSETS = {
     [SKIER_JUMP_4] : 'img/skier_jump_4.png',
     [SKIER_JUMP_5] : 'img/skier_jump_5.png',
     [JUMP_RAMP] : 'img/jump_ramp.png',
+    [RHINO_DEFAULT] : 'img/rhino_default.png',
+    [RHINO_RUN_LEFT] : 'img/rhino_run_left.png',
+    [RHINO_RUN_LEFT_2] : 'img/rhino_run_left_2.png',
+    [RHINO_LIFT] : 'img/rhino_lift.png',
+    [RHINO_LIFT_MOUTH_OPEN] : 'img/rhino_lift_mouth_open.png',
+    [RHINO_LIFT_EAT_1] : 'img/rhino_lift_eat_1.png',
+    [RHINO_LIFT_EAT_2] : 'img/rhino_lift_eat_2.png',
+    [RHINO_LIFT_EAT_3] : 'img/rhino_lift_eat_3.png',
+    [RHINO_LIFT_EAT_4] : 'img/rhino_lift_eat_4.png',
 };
 
 export const SKIER_DIRECTIONS = {
@@ -69,7 +91,8 @@ export const KEYS = {
 export const SKIE_STATE = {
     SKIING: 'skiing',
     JUMP: 'jump',
-    CRASH: 'crashed'
+    CRASH: 'crashed',
+    EATEN: 'eaten',
 };
 
 export const SKIER_JUMP_TIME = 25;
@@ -79,4 +102,29 @@ export const SKIER_JUMP_ASSETS = [
     SKIER_JUMP_3,
     SKIER_JUMP_2,
     SKIER_JUMP_1,
+];
+
+export const RHINO_STATES = {
+    CHASE: 'chasing',
+    EAT: 'eating',
+    CELEBRATE: 'celebrating',
+};
+
+export const RHINO_CHASE_TIME = 8;
+export const RHINO_CHASE_ASSETS = [
+    RHINO_RUN_LEFT,
+    RHINO_RUN_LEFT_2
+];
+export const RHINO_EAT_TIME = 50;
+export const RHINO_EAT_ASSETS = [
+    RHINO_LIFT,
+    RHINO_LIFT_MOUTH_OPEN,
+    RHINO_LIFT_EAT_1,
+    RHINO_LIFT_EAT_2,
+    RHINO_DEFAULT,
+];
+export const RHINO_CELEBRATE_TIME = 25;
+export const RHINO_CELEBRATE_ASSETS = [
+    RHINO_LIFT_EAT_3,
+    RHINO_LIFT_EAT_4
 ];

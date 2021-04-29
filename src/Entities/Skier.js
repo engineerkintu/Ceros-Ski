@@ -2,6 +2,7 @@ import * as Constants from "../Constants";
 import { Entity } from "./Entity";
 import { intersectTwoRects, Rect } from "../Core/Utils";
 
+
 export class Skier extends Entity {
     assetName = Constants.SKIER_DOWN;
 
@@ -14,6 +15,9 @@ export class Skier extends Entity {
         super(x, y);
     }
     setState(state){
+        if(this.state === Constants.SKIE_STATE.EATEN){
+            return;
+        }
        
         this.state = state;
         this.animationDuration = 0;
@@ -83,30 +87,47 @@ export class Skier extends Entity {
         }
     }
 
+    //determine motion of skear
+    motionSkear(x,y){
+        //Skear does not move while eaten
+        if(this.state === Constants.SKIE_STATE.EATEN){
+            return;
+        }
+        this.x += x;
+        this.y += y;
+    }
+
     moveSkierLeft() {
-        this.x -= Constants.SKIER_STARTING_SPEED;
+        
+        this.motionSkear(-Constants.SKIER_STARTING_SPEED, 0);
     }
 
     moveSkierLeftDown() {
-        this.x -= this.speed / Constants.SKIER_DIAGONAL_SPEED_REDUCER;
-        this.y += this.speed / Constants.SKIER_DIAGONAL_SPEED_REDUCER;
+        var x = this.speed / Constants.SKIER_DIAGONAL_SPEED_REDUCER;
+        var y = this.speed / Constants.SKIER_DIAGONAL_SPEED_REDUCER;
+        this.motionSkear(-x, y);
     }
 
     moveSkierDown() {
-        this.y += this.speed;
+        var y = this.speed;
+        this.motionSkear(0,y);
+
     }
 
     moveSkierRightDown() {
-        this.x += this.speed / Constants.SKIER_DIAGONAL_SPEED_REDUCER;
-        this.y += this.speed / Constants.SKIER_DIAGONAL_SPEED_REDUCER;
+        var x = this.speed / Constants.SKIER_DIAGONAL_SPEED_REDUCER;
+        var y = this.speed / Constants.SKIER_DIAGONAL_SPEED_REDUCER;
+        this.motionSkear(x,y);
     }
 
     moveSkierRight() {
-        this.x += Constants.SKIER_STARTING_SPEED;
+        var x = Constants.SKIER_STARTING_SPEED;
+        this.motionSkear(x,0);
     }
 
     moveSkierUp() {
-        this.y -= Constants.SKIER_STARTING_SPEED;
+        var y = Constants.SKIER_STARTING_SPEED;
+        this.motionSkear(0,-y);
     }
 
     turnLeft() {

@@ -1,7 +1,8 @@
+import {Rect} from "../Core/Utils";
 export class Entity {
     x = 0;
     y = 0;
-
+    isHidden = false;
     assetName = '';
 
     constructor(x, y) {
@@ -20,7 +21,25 @@ export class Entity {
         };
     }
 
+    getBounds(assetManager){
+        const asset = assetManager.getAsset(this.assetName);
+        return new Rect(
+            this.x - asset.width / 2,
+            this.y - asset.height / 2,
+            this.x + asset.width / 2,
+            this.y
+        );
+    }
+    
+    hide(){
+        this.isHidden = true;
+    }
+
+
     draw(canvas, assetManager) {
+        if(this.isHidden){
+            return;
+        }
         const asset = assetManager.getAsset(this.assetName);
         const drawX = this.x - asset.width / 2;
         const drawY = this.y - asset.height / 2;
