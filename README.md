@@ -104,3 +104,23 @@ The obvious solution will be to monitor the skier, if he has crashed and he is n
 The solution that I implemented was to tracking of the crashed state and direction are completely different.
 "So far, that is where I am, but let me look for more bugs and do unit tests"
 
+### Unit test
+I wrote unit tests to verify the left and right direction during skier movement.
+I wrote some more tests for the skier jump and collision detection code as well.  Running tests with the `--watch` flag definitely helps. As I went through later and made changes to code
+that I had tested, I knew right away when I had broken something, and I also knew right away when it was working again.
+
+### Extend existing functionality
+I added a mechanism to keep track of whether the skier was jumping or not. I have used an array constant to include various images for the jump animation. I have added `SKIER_JUMP_TIME` to controll animation. 
+To make the skier enjoy, I added the jump ramp asset as another possible
+obstacle, it also has the same opportunity as other objects to appear on the map. When the skier detects a collision, the asset type of the obstacle is checked. If it's a jump ramp, the skier is put into a jumping state, and an animation counter is started to progress through each animation step. After the last step is completed, the skier is no longer in a jumping state. To add on, while the skier is jumping and he meets a rock or a collission, the collision is ignored. The skier can not change directions while he is jumping. I have added a rhino whose speed increases slightly as time passes.
+
+### Build something new
+I made a rhino class, by extending from Entity class. In rhino movement, I did spawn the rhino off screen and have him slowly increase his speed so he would eventually catch up to the skier. The Rhino has three states: chasing, eating, and celebrating. He starts in chase state, moving at his current speed directly toward the skier. The main game loop triggers the rhino to detect his own collision with the skier, just like the skier detects his own collisions with any obstacles. Once the rhino collides with the skier, he enters eating mode, also triggering the skier to hide and setting the skier's state to eaten. A skier in an eaten state can't move,ending the game. Once the rhino plays through the eating animation, it enters celebrate mode.
+
+### Documentation
+To run the project locally, after getting the repo from https://github.com/engineerkintu/Ceros-Ski.git  and enter these commands `npm install && npm run dev` and open http://localhost:8080/ in the browser will have to
+suffice. 
+
+
+
+
